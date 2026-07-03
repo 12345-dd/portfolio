@@ -1,11 +1,13 @@
 import { useMemo, useState } from "react";
 
 import {
+  Box,
   CssBaseline,
   ThemeProvider,
 } from "@mui/material";
 
 import getTheme from "./theme/theme";
+import Navbar from "./components/Navbar/Navbar";
 
 function App() {
 
@@ -17,11 +19,17 @@ function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
 
-      <div>
+      <Navbar />
 
+      <Box
+        sx={{
+          height: "200vh",
+          pt: "120px",
+          textAlign: "center"
+        }}
+      >
         Portfolio Coming Soon
-
-      </div>
+      </Box>
 
     </ThemeProvider>
   );
