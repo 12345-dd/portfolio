@@ -1,30 +1,17 @@
 import { useEffect, useState } from "react";
+import { AppBar, Box, Container, Toolbar } from "@mui/material";
 import { motion } from "framer-motion";
 
-import {
-  AppBar,
-  Toolbar,
-  Typography,
-  Button,
-  Box,
-  IconButton,
-} from "@mui/material";
-
+import DesktopMenu from "./DesktopMenu";
 import MobileDrawer from "./MobileDrawer";
 
-import MenuIcon from "@mui/icons-material/Menu";
-import DownloadIcon from "@mui/icons-material/Download";
-
-import navLinks from "../../data/navLinks";
-import personalInfo from "../../data/personalInfo";
-
-const Navbar = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [drawerOpen, setDrawerOpen] = useState(false)
+const Navbar = ({ mode, setMode}) => {
+  const [scrolled, setScrolled] = useState(false);
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 40);
+      setScrolled(window.scrollY > 40);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -33,123 +20,85 @@ const Navbar = () => {
   }, []);
 
   return (
-    <motion.div
-      initial={{ y: -80 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.6 }}
-    >
+    <>
       <AppBar
         position="fixed"
         elevation={0}
         sx={{
-          background: isScrolled
-            ? "rgba(15,23,42,.75)"
-            : "transparent",
-
-          backdropFilter: isScrolled ? "blur(16px)" : "none",
-
-          transition: "all .4s ease",
-
-          boxShadow: isScrolled
-            ? "0 10px 30px rgba(0,0,0,.25)"
-            : "none",
+          background: "transparent",
+          boxShadow: "none",
+          transition: "0.4s",
         }}
       >
-        <Toolbar
-          sx={{
-            maxWidth: "1400px",
-            width: "100%",
-            mx: "auto",
-            minHeight: "80px",
-            display: "flex",
-            justifyContent: "space-between",
-          }}
-        >
-
-          <Typography
-            variant="h4"
-            sx={{
-              fontWeight: 700,
-              color: "primary.main",
-              cursor: "pointer",
+        <Container maxWidth="xl">
+          <motion.div
+            initial={{ y: -80, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{
+              duration: 0.6,
             }}
           >
-            {personalInfo.shortName}
-          </Typography>
-
-          <Box
+            <Toolbar
+            disableGutters
             sx={{
-              display: {
-                xs: "none",
-                md: "flex",
-              },
-              gap: 3,
+                justifyContent: "center",
+                pt: 2.5,
+                px: 2,
             }}
-          >
-            {navLinks.map((item) => (
-              <Button
-                key={item.id}
-                sx={{
-                  color: "white",
-                  fontWeight: 600,
-
-                  "&:hover": {
-                    color: "primary.main",
-                    background: "transparent",
-                  },
-                }}
-              >
-                {item.label}
-              </Button>
-            ))}
-          </Box>
-
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              gap: 2,
-            }}
-          >
-            <Button
-              variant="contained"
-              startIcon={<DownloadIcon />}
-              sx={{
-                display: {
-                  xs: "none",
-                  md: "flex",
-                },
-
-                borderRadius: "30px",
-
-                px: 3,
-              }}
             >
-              Resume
-            </Button>
+                <Box
+                    sx={{
+                    width: "100%",
+                    maxWidth: "1250px",
 
-            <IconButton
-              onClick={() => setDrawerOpen(true)}
-              sx={{
-                display: {
-                  xs: "flex",
-                  md: "none",
-                },
+                    px: {
+                        xs: 2,
+                        md: 4,
+                    },
 
-                color: "text.primary",
-              }}
-            >
-              <MenuIcon />
-            </IconButton>
-          </Box>
-        </Toolbar>
+                    py: 1.5,
+
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+
+                    borderRadius: "22px",
+
+                    background: scrolled
+                        ? "rgba(15,23,42,0.75)"
+                        : "rgba(15,23,42,0.35)",
+
+                    backdropFilter: "blur(18px)",
+
+                    WebkitBackdropFilter: "blur(18px)",
+
+                    border: "1px solid rgba(255,255,255,0.08)",
+
+                    boxShadow: scrolled
+                        ? "0 15px 45px rgba(0,0,0,.35)"
+                        : "0 10px 30px rgba(0,0,0,.15)",
+
+                    transition: "all .35s ease",
+                    }}
+                >
+                  <DesktopMenu
+                    mode={mode}
+                    setMode={setMode}
+                    openDrawer={() => setDrawerOpen(true)}
+                  />
+                </Box>
+            </Toolbar>
+          </motion.div>
+        </Container>
       </AppBar>
 
-      <MobileDrawer 
+      <MobileDrawer
+        mode={mode}
+        setMode={setMode}
         open={drawerOpen}
         onClose={() => setDrawerOpen(false)}
       />
-    </motion.div>
+    </>
   );
 };
 

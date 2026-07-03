@@ -19,7 +19,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
 
-      <Navbar />
+      <Navbar mode={mode} setMode={setMode}/>
 
       <Box
         sx={{
