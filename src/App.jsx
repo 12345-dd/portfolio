@@ -9,6 +9,7 @@ import {
 import getTheme from "./theme/theme";
 import Navbar from "./components/Navbar/Navbar";
 import Hero from "./components/Hero/Hero";
+import About from "./components/About/About";
 
 function App() {
 
@@ -23,6 +24,8 @@ function App() {
       <Navbar mode={mode} setMode={setMode}/>
 
       <Hero />
+
+      <About />
 
     </ThemeProvider>
   );
