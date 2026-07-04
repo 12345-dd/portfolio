@@ -7,7 +7,7 @@ const personalInfo = {
 
   role: "Full Stack MERN Developer",
 
-  resume: "/resume.pdf",
+  resume: "/resume/Mayur_Patil_Resume.pdf",
 };
 
 export default personalInfo;

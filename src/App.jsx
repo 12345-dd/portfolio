@@ -8,6 +8,7 @@ import {
 
 import getTheme from "./theme/theme";
 import Navbar from "./components/Navbar/Navbar";
+import Hero from "./components/Hero/Hero";
 
 function App() {
 
@@ -21,15 +22,7 @@ function App() {
 
       <Navbar mode={mode} setMode={setMode}/>
 
-      <Box
-        sx={{
-          height: "200vh",
-          pt: "120px",
-          textAlign: "center"
-        }}
-      >
-        Portfolio Coming Soon
-      </Box>
+      <Hero />
 
     </ThemeProvider>
   );

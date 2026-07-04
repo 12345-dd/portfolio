@@ -9,6 +9,7 @@ import {
   ListItemText,
   Button,
   ListItemIcon,
+  useTheme,
 } from "@mui/material";
 
 import CloseIcon from "@mui/icons-material/Close";
@@ -18,8 +19,11 @@ import LightModeRoundedIcon from "@mui/icons-material/LightModeRounded";
 
 import navLinks from "../../data/navLinks";
 import personalInfo from "../../data/personalInfo";
+import { Link } from "react-scroll";
 
 const MobileDrawer = ({ open, onClose, mode, setMode }) => {
+  const theme = useTheme()
+
   return (
     <Drawer
       anchor="right"
@@ -45,7 +49,10 @@ const MobileDrawer = ({ open, onClose, mode, setMode }) => {
         <Typography
           variant="h5"
           sx={{
-            color: "primary.main",
+            color:
+              theme.palette.mode === "dark"
+                ? "linear-gradient(90deg,#F8FAFC,#60A5FA,#8B5CF6)"
+                : "linear-gradient(90deg,#0F172A,#2563EB,#7C3AED)",
             fontWeight: 700,
           }}
         >
@@ -61,13 +68,44 @@ const MobileDrawer = ({ open, onClose, mode, setMode }) => {
 
       <List>
         {navLinks.map((item) => (
-          <ListItemButton
-            sx={{py:1.5, px: 3}}
+          <Link
             key={item.id}
+            to={item.id}
+            smooth
+            duration={600}
+            offset={-80}
+            spy
             onClick={onClose}
           >
-            <ListItemText primary={item.label} />
-          </ListItemButton>
+            <ListItemButton
+              sx={{
+                py: 1.5,
+                px: 3,
+
+                "&.active":{
+                  background:
+                    "linear-gradient(90deg,#4F46E5,#06B6D4)",
+                  color:"#fff",
+
+                  "& .MuiListItemText-primary":{
+                    fontWeight: 700
+                  },
+
+                  
+                },
+
+                "&:hover": {
+                    color: "#60A5FA",
+                },
+
+                "&:hover::after": {
+                    transform: "scaleX(1)",
+                }
+              }}
+            >
+              <ListItemText primary={item.label} />
+            </ListItemButton>
+          </Link>
         ))}
       </List>
 

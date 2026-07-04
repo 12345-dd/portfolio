@@ -1,4 +1,4 @@
-import { Box, Button, IconButton, Typography } from "@mui/material";
+import { Box, Button, IconButton, Typography, useTheme } from "@mui/material";
 
 import MenuIcon from "@mui/icons-material/Menu";
 import DownloadRoundedIcon from "@mui/icons-material/DownloadRounded";
@@ -11,6 +11,7 @@ import navLinks from "../../data/navLinks";
 import personalInfo from "../../data/personalInfo";
 
 const DesktopMenu = ({ openDrawer, mode, setMode }) => {
+  const theme = useTheme()
   return (
     <>
      
@@ -23,7 +24,10 @@ const DesktopMenu = ({ openDrawer, mode, setMode }) => {
 
             cursor: "pointer",
 
-            background: "linear-gradient(90deg,#ffffff,#60A5FA)",
+            background:
+              theme.palette.mode === "dark"
+                ? "linear-gradient(90deg,#F8FAFC,#60A5FA,#8B5CF6)"
+                : "linear-gradient(90deg,#0F172A,#2563EB,#7C3AED)",
 
             WebkitBackgroundClip: "text",
 
