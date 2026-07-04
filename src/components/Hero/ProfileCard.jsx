@@ -201,7 +201,10 @@ const ProfileCard = () => {
             gridTemplateColumns:
               "repeat(2,1fr)",
 
-            gap: 2,
+            gap: {
+              xs:1.5,
+              md:2
+            },
           }}
         >
           {infoCards.map((item) => (
@@ -209,11 +212,9 @@ const ProfileCard = () => {
               key={item.title}
               sx={{
                 textAlign: "center",
-
-                p: 2,
-
+                p:2,
+                mr: -0.5,
                 borderRadius: 3,
-
                 background:
                   theme.palette.mode === "dark"
                     ? "rgba(255,255,255,.05)"

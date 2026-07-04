@@ -11,6 +11,9 @@ const techStack = [
   "GitHub",
   "REST APIs",
   "JWT",
+  "Bootstrap",
+  "Tailwind CSS",
+  "Mongoose"
 ];
 
 export default techStack;

@@ -7,7 +7,7 @@ import {
   useTheme,
 } from "@mui/material";
 
-const MotionCard = motion(Card);
+const MotionCard = motion.create(Card);
 
 const FeatureCard = ({ feature }) => {
   const theme = useTheme();

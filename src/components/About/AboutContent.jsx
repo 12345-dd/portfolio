@@ -33,7 +33,12 @@ const AboutContent = () => {
         Passionate About Building
         <Box
           component="span"
-          color="primary.main"
+          sx={{
+            background: 
+                "linear-gradient(90deg,#4F46E5,#2563EB,#06B6D4)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+          }}
         >
           {" "}Modern Web Apps
         </Box>
@@ -61,7 +66,7 @@ const AboutContent = () => {
           fontSize: "1.05rem",
         }}
       >
-        Currently pursuing my M.Tech in Computer Engineering,
+        I had completed my M.Tech in Computer Engineering,
         I've developed multiple full-stack projects including
         AI-powered applications, dashboards, REST APIs,
         authentication systems, and responsive interfaces.

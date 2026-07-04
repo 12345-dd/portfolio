@@ -45,7 +45,7 @@ const About = () => {
         <Grid
           container
           spacing={8}
-          alignItems="center"
+          sx={{alignItems: "center"}}
         >
           <Grid
             size={{
