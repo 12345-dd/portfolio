@@ -24,6 +24,10 @@ const navLinks = [
     label: "Education",
   },
   {
+    id:"research",
+    label: "Research",
+  },
+  {
     id: "contact",
     label: "Contact",
   },
