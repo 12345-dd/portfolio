@@ -1,6 +1,8 @@
-import { Chip } from "@mui/material";
+import { Chip, useTheme } from "@mui/material";
 
 const ProjectTech = ({ technologies }) => {
+    const theme = useTheme()
+    
   return (
     <>
       {technologies.map((tech) => (
@@ -13,15 +15,25 @@ const ProjectTech = ({ technologies }) => {
 
             fontWeight: 600,
 
-            bgcolor: "primary.main",
+            bgcolor:
+                theme.palette.mode ===
+                    "dark"
+                        ? "rgba(79,70,229,.12)"
+                        : "rgba(79,70,229,.08)",
 
-            color: "#fff",
-
-            "&:hover": {
-              transform: "translateY(-2px)",
-            },
+            border:
+                "1px solid rgba(79,70,229,.18)",
 
             transition: ".3s",
+
+            "&:hover": {
+                bgcolor: "primary.main",
+
+                color: "#fff",
+
+                transform:
+                    "translateY(-3px)",
+                },
           }}
         />
       ))}
