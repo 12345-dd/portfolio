@@ -6,23 +6,52 @@ import {
   Divider,
   List,
   ListItemButton,
+  ListItemIcon,
   ListItemText,
   Button,
-  ListItemIcon,
   useTheme,
+  Switch,
 } from "@mui/material";
 
-import CloseIcon from "@mui/icons-material/Close";
+import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import DownloadRoundedIcon from "@mui/icons-material/DownloadRounded";
+
+import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
+import PersonRoundedIcon from "@mui/icons-material/PersonRounded";
+import CodeRoundedIcon from "@mui/icons-material/CodeRounded";
+import RocketLaunchRoundedIcon from "@mui/icons-material/RocketLaunchRounded";
+import BusinessCenterRoundedIcon from "@mui/icons-material/BusinessCenterRounded";
+import SchoolRoundedIcon from "@mui/icons-material/SchoolRounded";
+import ArticleRoundedIcon from "@mui/icons-material/ArticleRounded";
+import MailRoundedIcon from "@mui/icons-material/MailRounded";
+ 
+
 import DarkModeRoundedIcon from "@mui/icons-material/DarkModeRounded";
 import LightModeRoundedIcon from "@mui/icons-material/LightModeRounded";
 
-import navLinks from "../../data/navLinks";
-import personalInfo from "../../data/personalInfo";
 import { Link } from "react-scroll";
 
-const MobileDrawer = ({ open, onClose, mode, setMode }) => {
-  const theme = useTheme()
+import personalInfo from "../../data/personalInfo";
+import navLinks from "../../data/navLinks";
+
+const MobileDrawer = ({
+  open,
+  onClose,
+  mode,
+  setMode,
+}) => {
+  const theme = useTheme();
+
+  const navIcons = {
+    home: <HomeRoundedIcon />,
+    about: <PersonRoundedIcon />,
+    skills: <CodeRoundedIcon />,
+    projects: <RocketLaunchRoundedIcon />,
+    experience: <BusinessCenterRoundedIcon />,
+    education: <SchoolRoundedIcon />,
+    research: <ArticleRoundedIcon />,
+    contact: <MailRoundedIcon />,
+  };
 
   return (
     <Drawer
@@ -32,41 +61,82 @@ const MobileDrawer = ({ open, onClose, mode, setMode }) => {
       slotProps={{
         sx: {
           width: 320,
-          backgroundColor: "background.paper",
+
+          borderTopLeftRadius: 28,
+
+          borderBottomLeftRadius: 28,
+
+          bgcolor: "background.paper",
+
           color: "text.primary",
+
+          overflowX: "hidden",
         },
       }}
     >
+      {/* Header */}
 
       <Box
         sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          p: 2,
+          p: 3,
         }}
       >
-        <Typography
-          variant="h5"
+        <Box
           sx={{
-            color:
-              theme.palette.mode === "dark"
-                ? "linear-gradient(90deg,#F8FAFC,#60A5FA,#8B5CF6)"
-                : "linear-gradient(90deg,#0F172A,#2563EB,#7C3AED)",
-            fontWeight: 700,
+            display: "flex",
+
+            justifyContent: "space-between",
+
+            alignItems: "center",
           }}
         >
-          {personalInfo.brand}
-        </Typography>
+          <Box>
+            <Typography
+              variant="h5"
+              sx={{
+                fontWeight: 800,
 
-        <IconButton onClick={onClose}>
-          <CloseIcon />
-        </IconButton>
+                background:
+                  theme.palette.mode === "dark"
+                    ? "linear-gradient(90deg,#F8FAFC,#60A5FA,#8B5CF6)"
+                    : "linear-gradient(90deg,#0F172A,#2563EB,#7C3AED)",
+
+                WebkitBackgroundClip: "text",
+
+                WebkitTextFillColor: "transparent",
+              }}
+            >
+              {personalInfo.brand}
+            </Typography>
+          </Box>
+
+          <IconButton
+            onClick={onClose}
+            sx={{
+              borderRadius: 3,
+
+              bgcolor:
+                theme.palette.mode === "dark"
+                  ? "rgba(255,255,255,.06)"
+                  : "rgba(0,0,0,.05)",
+            }}
+          >
+            <CloseRoundedIcon />
+          </IconButton>
+        </Box>
       </Box>
 
       <Divider />
 
-      <List>
+      {/* Navigation */}
+
+      <List
+        sx={{
+          px: 2,
+
+          py: 2,
+        }}
+      >
         {navLinks.map((item) => (
           <Link
             key={item.id}
@@ -79,89 +149,173 @@ const MobileDrawer = ({ open, onClose, mode, setMode }) => {
           >
             <ListItemButton
               sx={{
+                borderRadius: 3,
+
+                mb: 1,
+
                 py: 1.5,
-                px: 3,
 
-                "&.active":{
-                  background:
-                    "linear-gradient(90deg,#4F46E5,#06B6D4)",
-                  color:"#fff",
+                transition: ".3s",
 
-                  "& .MuiListItemText-primary":{
-                    fontWeight: 700
+                "&.active": {
+                  bgcolor:
+                    theme.palette.mode === "dark"
+                      ? "rgba(79,70,229,.18)"
+                      : "rgba(79,70,229,.12)",
+
+                  color: "primary.main",
+
+                  borderLeft: "4px solid",
+
+                  borderColor: "primary.main",
+
+                  "& .MuiListItemText-primary": {
+                    fontWeight: 700,
                   },
-
-                  
                 },
 
                 "&:hover": {
-                    color: "#60A5FA",
-                },
+                  bgcolor:
+                    theme.palette.mode === "dark"
+                      ? "rgba(255,255,255,.05)"
+                      : "rgba(99,102,241,.06)",
 
-                "&:hover::after": {
-                    transform: "scaleX(1)",
-                }
+                  transform: "translateX(8px)",
+                },
               }}
             >
-              <ListItemText primary={item.label} />
+              <ListItemIcon
+                sx={{
+                  color: "inherit",
+
+                  minWidth: 42,
+                }}
+              >
+                {navIcons[item.id]}
+              </ListItemIcon>
+
+              <ListItemText
+                primary={item.label}
+              />
             </ListItemButton>
           </Link>
         ))}
       </List>
 
-      <List>
-        <ListItemButton
+      <Box
+        sx={{
+          px: 2,
+        }}
+      >
+        <Button
           component="a"
           href={personalInfo.resume}
           download
+          fullWidth
+          startIcon={<DownloadRoundedIcon />}
+          variant="contained"
           sx={{
-            mx: 2,
-            mt: 2,
-            borderRadius: 2,
-            background: "linear-gradient(90deg,#4F46E5,#06B6D4)",
-            color: "#fff",
+            py: 1.6,
+
+            borderRadius: "50px",
+
+            textTransform: "none",
+
+            fontWeight: 700,
+
+            fontSize: "1rem",
+
+            background:
+              "linear-gradient(90deg,#4F46E5,#06B6D4)",
+
+            boxShadow:
+              "0 12px 30px rgba(79,70,229,.30)",
+
+            transition: ".3s",
 
             "&:hover": {
-              transform: "translateY(-2px)"
+              transform: "translateY(-3px)",
+
+              boxShadow:
+                "0 18px 35px rgba(79,70,229,.35)",
             },
           }}
         >
-          <ListItemIcon
+          Download Resume
+        </Button>
+      </Box>
+            {/* Theme */}
+
+      <Box
+        sx={{
+          px: 2,
+          mt: 3,
+        }}
+      >
+        <Box
+          sx={{
+            p: 2,
+
+            mb: 2,
+
+            display: "flex",
+
+            alignItems: "center",
+
+            justifyContent: "space-between",
+
+            borderRadius: "20px",
+
+            bgcolor:
+              theme.palette.mode === "dark"
+                ? "rgba(255,255,255,.05)"
+                : "rgba(99,102,241,.06)",
+
+            border: `1px solid ${
+              theme.palette.mode === "dark"
+                ? "rgba(255,255,255,.08)"
+                : "rgba(99,102,241,.15)"
+            }`,
+          }}
+        >
+          <Box
             sx={{
-              color: "#fff",
-              minWidth: 36,
+              display: "flex",
+
+              alignItems: "center",
+
+              gap: 1.5,
             }}
           >
-            <DownloadRoundedIcon />
-          </ListItemIcon>
+            {mode === "dark" ? (
+              <DarkModeRoundedIcon color="primary" />
+            ) : (
+              <LightModeRoundedIcon color="warning" />
+            )}
 
-          <ListItemText primary="Download CV" />
-        </ListItemButton>
-      </List>
+            <Box>
+              <Typography
+                fontWeight={700}
+              >
+                {mode === "dark"
+                  ? "Dark Mode"
+                  : "Light Mode"}
+              </Typography>
+            </Box>
+          </Box>
 
-      <Button
-        fullWidth
-        startIcon={
-          mode === "dark"
-            ? <LightModeRoundedIcon />
-            : <DarkModeRoundedIcon />
-        }
-        sx={{
-            variant:"outlined",
-            mx:2,
-            mt: 2,
-            width: "calc(100% - 32px)",
-            borderRadius: "2",
-            justifyContent: "flex-start",
-            textTransform: "none",
-            fontWeight: 600
-        }}
-        onClick={() =>
-            setMode(mode === "dark" ? "light" : "dark")
-        }
-      >
-        {mode === "dark" ? "Light Mode" : "Dark Mode"}
-      </Button>
+          <Switch
+            checked={mode === "dark"}
+            onChange={() =>
+              setMode(
+                mode === "dark"
+                  ? "light"
+                  : "dark"
+              )
+            }
+          />
+        </Box>
+      </Box>
     </Drawer>
   );
 };
