@@ -201,10 +201,6 @@ const ProjectDialog = ({
               flexWrap: "wrap",
               gap: 1
             }}
-            // direction="row"
-            // spacing={1}
-            // useFlexGap
-            // flexWrap="wrap"
           >
             {project.technologies.map((tech) => (
               <Chip
