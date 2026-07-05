@@ -9,6 +9,7 @@ import { Link } from "react-scroll";
 
 import navLinks from "../../data/navLinks";
 import personalInfo from "../../data/personalInfo";
+import heroInfo from "../../data/heroInfo";
 
 const DesktopMenu = ({ openDrawer, mode, setMode }) => {
   const theme = useTheme()
@@ -162,6 +163,9 @@ const DesktopMenu = ({ openDrawer, mode, setMode }) => {
         </IconButton>
 
         <Button
+            component="a"
+            href={heroInfo.resume}
+            download
             variant="contained"
             endIcon={<DownloadRoundedIcon />}
             sx={{
