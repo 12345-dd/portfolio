@@ -7,6 +7,7 @@ import {
 } from "@mui/material";
 
 import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded";
+import { Link } from "react-scroll";
 
 const AboutContent = () => {
   return (
@@ -74,20 +75,27 @@ const AboutContent = () => {
         to impactful software solutions.
       </Typography>
 
-      <Button
-        variant="contained"
-        endIcon={<ArrowForwardRoundedIcon />}
-        sx={{
-          mt: 5,
-          px: 4,
-          py: 1.5,
-          borderRadius: "40px",
-          background:
-            "linear-gradient(90deg,#4F46E5,#06B6D4)",
-        }}
+      <Link
+        to="projects"
+        smooth
+        duration={600}
+        offset={-80}
       >
-        Explore Projects
-      </Button>
+        <Button
+          variant="contained"
+          endIcon={<ArrowForwardRoundedIcon />}
+          sx={{
+            mt: 5,
+            px: 4,
+            py: 1.5,
+            borderRadius: "40px",
+            background:
+              "linear-gradient(90deg,#4F46E5,#06B6D4)",
+          }}
+        >
+          Explore Projects
+        </Button>
+      </Link>
     </motion.div>
   );
 };
