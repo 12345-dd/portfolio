@@ -195,11 +195,16 @@ const ProjectDialog = ({
             Technologies Used
           </Typography>
 
-          <Stack
-            direction="row"
-            spacing={1}
-            useFlexGap
-            flexWrap="wrap"
+          <Box
+            sx={{
+              display: "flex",
+              flexWrap: "wrap",
+              gap: 1
+            }}
+            // direction="row"
+            // spacing={1}
+            // useFlexGap
+            // flexWrap="wrap"
           >
             {project.technologies.map((tech) => (
               <Chip
@@ -213,7 +218,7 @@ const ProjectDialog = ({
                 }}
               />
             ))}
-          </Stack>
+          </Box>
 
           <Divider
             sx={{
