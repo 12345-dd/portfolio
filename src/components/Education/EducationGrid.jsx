@@ -8,7 +8,6 @@ const EducationGrid = () => {
     <Grid
       container
       spacing={4}
-      justifyContent="center"
     >
       {education.map((item, index) => (
         <Grid
