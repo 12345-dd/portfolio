@@ -87,7 +87,7 @@ const projects = [
     image: superApp,
 
     description:
-      "Developed a desktop-only React application that integrates multiple utilities such as Weather, News, Movies, Notes, Timer, Currency Converter, and To-Do List into a single platform.",
+      "Developed a desktop-only React application that integrates multiple utilities such as Weather, News, Movies, Notes, Timer and To-Do List into a single platform.",
 
     technologies: [
       "React",
